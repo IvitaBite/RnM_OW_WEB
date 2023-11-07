@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Api;
 
 use App\Models\Character;
 use App\Models\CharacterCollection;
@@ -10,10 +10,10 @@ use App\Models\Episode;
 use App\Models\EpisodeCollection;
 use App\Models\Season;
 use App\Models\SeasonCollection;
-use GuzzleHttp\Client;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 
-class Api
+class RickAndMorty
 {
     private Client $client;
     private const API_URL = 'https://rickandmortyapi.com/api/episode';
@@ -50,6 +50,7 @@ class Api
             }
             $page++;
         }
+
         return $episodes;
     }
 

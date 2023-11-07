@@ -5,11 +5,12 @@ use App\Response;
 use App\Router\Router;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
-use Carbon\Carbon;
+use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$currentDateTime = Carbon::now();
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 $loader = new FilesystemLoader(__DIR__ . '/../app/Views');
 $twig = new Environment($loader);
@@ -31,7 +32,7 @@ switch ($routeInfo[0]) {
 
         [$controller, $method] = $routeInfo[1];
 
-        $response = (new $controller)->{$method}($vars);
+        $response = (new $controller($twig))->{$method}($vars);
 
         if ($response instanceof Response) {
             /** @var Response $response */

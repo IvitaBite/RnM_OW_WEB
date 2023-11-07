@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <style>
 
         nav {
@@ -143,6 +144,48 @@
             </button>
         </form>
     </div>
+
+    <h3>Weather</h3>
+
+    <form method="POST">
+        <label for="city"></label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div>
+        {% if weatherData is not null and weatherData.getWeathers()|length > 0 %}
+            {% set weather = weatherData.getWeathers()[0] %}
+            <p>City: {{ weather.getCity() }}</p>
+            <p>Country: {{ weather.getCountry() }}</p>
+            <p>Weather: {{ weather.getWeather() }}</p>
+            <p>Description: {{ weather.getWeatherDescription() }}</p>
+            <p>Temperature: {{ weather.getTemperature() }}°C</p>
+            <p>Min Temperature: {{ weather.getTemperatureMin() }}°C</p>
+            <p>Max Temperature: {{ weather.getTemperatureMax() }}°C</p>
+            <p>Pressure: {{ weather.getPressure() }} hPa</p>
+            <p>Humidity: {{ weather.getHumidity() }}%</p>
+            <p>Wind Speed: {{ weather.getWindSpeed() }} m/s</p>
+            <p>Wind Direction: {{ weather.getWindDirection() }}</p>
+            <p>Local Time: {{ currentDatetime }}</p>
+        {% elseif defaultData is not null and defaultData.getWeathers()|length > 0 %}
+            {% set defaultWeather = defaultData.getWeathers()[0] %}
+            <p>City: {{ defaultWeather.getCity() }}</p>
+            <p>Country: {{ defaultWeather.getCountry() }}</p>
+            <p>Weather: {{ defaultWeather.getWeather() }}</p>
+            <p>Description: {{ defaultWeather.getWeatherDescription() }}</p>
+            <p>Temperature: {{ defaultWeather.getTemperature() }}°C</p>
+            <p>Min Temperature: {{ defaultWeather.getTemperatureMin() }}°C</p>
+            <p>Max Temperature: {{ defaultWeather.getTemperatureMax() }}°C</p>
+            <p>Pressure: {{ defaultWeather.getPressure() }} hPa</p>
+            <p>Humidity: {{ defaultWeather.getHumidity() }}%</p>
+            <p>Wind Speed: {{ defaultWeather.getWindSpeed() }} m/s</p>
+            <p>Wind Direction: {{ defaultWeather.getWindDirection() }}</p>
+            <p>Local Time: {{ currentDatetime }}</p>
+        {% else %}
+            <p>No weather data available.</p>
+        {% endif %}
+    </div>
 </nav>
 <div class="container">
     <ul class="article-container">
@@ -156,7 +199,7 @@
     </ul>
 </div>
 <footer>
-    <p>&copy {{ currentDateTime.format('Y-m-d H:i:s') }}</p>
+    <p>&copy</p>
 </footer>
 </body>
 </html>

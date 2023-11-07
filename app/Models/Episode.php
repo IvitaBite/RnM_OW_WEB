@@ -15,10 +15,10 @@ class Episode
     private ?CharacterCollection $characters;
 
     public function __construct(
-        int $id,
-        string $name,
-        Carbon $airDate,
-        string $episode,
+        int                  $id,
+        string               $name,
+        Carbon               $airDate,
+        string               $episode,
         ?CharacterCollection $characters = null
     )
     {
@@ -58,6 +58,7 @@ class Episode
     {
         $this->characters = $characters;
     }
+
     public function matchesSearchQuery(string $query): bool
     {
         return stripos((string)$this->getId(), $query) !== false

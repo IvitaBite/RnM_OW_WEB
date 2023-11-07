@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Api;
+use App\Api\RickAndMorty;
 use App\Response;
 
 class EpisodeController
 {
-    private Api $api;
+    private RickAndMorty $api;
 
     public function __construct()
     {
-        $this->api = new Api();
+        $this->api = new RickAndMorty();
     }
 
     public function show(array $vars): Response
